@@ -1,6 +1,105 @@
-.color {
-  color: red;
-  .span {
-    color: blue;
+@import '../../styles/themes/theme.less';
+
+@btn-prefix-cls: ~"@{theme-name}-btn";
+
+.@{btn-prefix-cls} {
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  text-align: center;
+  color: @btn-font-color-default;
+  font-size: @font-size;
+  background-color: transparent;
+  border: @btn-bordor;
+  padding: 0 @spacing;
+  border-radius: @bordor-radius;
+  transition: all .3s @ease-in-out;
+
+  &:active {
+    // .click-animating-node();
+  }
+
+  &:hover {
+    color: @bg-color-primary;
+    border-color: @bg-color-primary;
+  }
+
+  // size
+  &-default {
+    height: 32px;
+    line-height: 32px;
+  }
+
+  &-small {
+    height: 24px;
+    line-height: 24px;
+  }
+
+  &-large {
+    height: 40px;
+    line-height: 40px;
+  }
+
+  &-block {
+    width: 100%;
+  }
+
+  &.disabled,
+  &[disabled] {
+    color: #333 !important;
+    background-color: #ccc !important;
+    border-color: #333 !important;
+    cursor: not-allowed;
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  // type
+  &-primary {
+    border: none;
+    color: @btn-font-color;
+    background-color: @bg-color-primary;
+    &:hover {
+      color: @btn-font-color;
+      background-color: @bg-color-second;
+    }
+  }
+}
+
+// 动画
+[click-animating] {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    border-radius: inherit;
+    border: 0 solid @primary-color;
+    opacity: 0.2;
+    animation: fadeEffect 2s @ease-out-circ, waveEffect .4s @ease-out-circ;
+    animation-fill-mode: forwards;
+    display: block;
+    pointer-events: none;
+  }
+}
+
+@keyframes waveEffect {
+  100% {
+    top: -@wave-animation-width;
+    left: -@wave-animation-width;
+    bottom: -@wave-animation-width;
+    right: -@wave-animation-width;
+    border-width: @wave-animation-width;
+  }
+}
+
+@keyframes fadeEffect {
+  100% {
+    opacity: 0;
   }
 }

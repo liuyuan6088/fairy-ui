@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import style from './App.less';
 
-import Button from './components/Button';
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>hello world</h1>
-        <Button />
+const App = ({ children }) => {
+  return (
+    <Router>
+      <div className={style.layout}>
+        <div className={style.header}>hello world</div>
+        <div className={style.container}>
+          <div className={style.siderbar}>
+            <Link to="/button">button</Link>
+          </div>
+          <div className={style.content}>
+            {children}
+          </div>
+        </div>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;
