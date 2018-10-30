@@ -32,13 +32,11 @@
   }
 
   &-small {
-    height: 24px;
-    line-height: 24px;
+    .small();
   }
 
   &-large {
-    height: 40px;
-    line-height: 40px;
+    .large();
   }
 
   &-block {
@@ -66,6 +64,55 @@
       background-color: @bg-color-second;
     }
   }
+
+  // group
+  .@{btn-prefix-cls}-group &:not(:first-child):not(:last-child) {
+      border-right-color: @bg-color-primary;
+      border-left-color: @bg-color-primary;
+    }
+  &-group {
+    .@{btn-prefix-cls} {
+      border-radius: 0;
+      &:not(:first-child) {
+        margin-left: -1px;
+      }
+      &:focus {
+        position: relative; // 提升层级
+        border-color: red !important;
+      }
+      &:first-child {
+        border-bottom-left-radius: @bordor-radius;
+        border-top-left-radius: @bordor-radius;
+      }
+      &:last-child {
+        border-right: @btn-bordor;
+        border-bottom-right-radius: @bordor-radius;
+        border-top-right-radius: @bordor-radius;
+      }
+    }
+  }
+
+  &-group-small {
+    .@{btn-prefix-cls} {
+      .small();
+    }
+  }
+
+  &-group-large {
+    .@{btn-prefix-cls} {
+      .large();
+    }
+  }
+}
+
+.small {
+  height: 24px;
+  line-height: 24px;
+}
+
+.large {
+  height: 40px;
+  line-height: 40px;
 }
 
 // 动画
